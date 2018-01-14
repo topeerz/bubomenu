@@ -8,8 +8,14 @@ class AbstractMenuItem(object):
         self._content = None
 
     def parseLine(self, line):
+        """
+        :param line: input data
+        :return: entity to handle next input (self, child or None)
+        """
         raise NotImplementedError("Not implemented")
 
+    def html(self):
+        raise NotImplementedError("Not implemented")
 
 class MenuRootButton(AbstractMenuItem):
     def parseLine(self, line):
@@ -17,7 +23,8 @@ class MenuRootButton(AbstractMenuItem):
         root_button_initialized = self._content
         if not root_button_initialized:
             # my
-            if MenuParser.parseLink(line):
+            link = MenuParser.parseLink(line)
+            if link or link =="":
                 raise RuntimeError("Can't parse this")
 
             self._content = line
@@ -59,9 +66,9 @@ class SubmenuItem(AbstractMenuItem):
 
 class MenuParser(object):
     def __init__(self):
-        self.buffer = None  # buffer to parse
-        self.root_item = None  # root element
-        self.current_item = None  # currently parsed element
+        self._buffer = None  # buffer to parse
+        self._root_item = None  # root element
+        self._current_item = None  # currently parsed element
 
     @staticmethod
     def parseLink(line):
@@ -74,8 +81,10 @@ class MenuParser(object):
         return link
 
     def parse_line(self, line):
-        self.current_item = self.current_item.parseLine(line)
+        self._current_item = self._current_item.parseLine(line)
 
+    def html(self):
+        return self._root_item.html()
         # if hasLink
         # if in button
         # if first in submenu

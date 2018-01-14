@@ -1,7 +1,4 @@
 import unittest
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('..'))
 from bubomenu import parsing
 
 
@@ -36,10 +33,24 @@ class MenuItemsTestCase(unittest.TestCase):
         pass
 
     def test_MenuRootButton_parseLine_ShouldConsumeFirstInput(self):
-        pass
+        # given
+        sut = parsing.MenuRootButton(None)
+
+        # when
+        ret = sut.parseLine("A blablabla")
+
+        # then
+        self.assertEqual(sut,ret)
+        self.assertEqual(0,len(sut._rg_child))
 
     def test_MenuRootButton_parseLine_ifFirstInputHasLink_ShouldThrow(self):
-        pass
+        # given
+        sut = parsing.MenuRootButton(None)
+
+        # when
+        # then
+        self.assertRaises(Exception, sut.parseLine, "A blablabla|" )
+        self.assertRaises(Exception, sut.parseLine, "A blablabla|some.link" )
 
     def test_MenuRootButton_parseLine_ShouldCreateMenu(self):
         # created menu
