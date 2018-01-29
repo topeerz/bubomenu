@@ -29,20 +29,97 @@ class MenuParserTestCase(unittest.TestCase):
         # then
         self.assertEqual("", ret)
 
-    def test_firstParseLine_shouldCreateRootButton(self):
+    def test_emptyMenu_shouldCreateRootButton(self):
         # when
         self.sut.parseLine("UKRAINA")
 
         # then
         self.assertEqual(parsing.MenuRootButton, type(self.sut._current_item))
 
-    def test_oneItemMenu_shouldParse(self):
+    def test_menuWithHeader_shouldParse(self):
         # when
         self.sut.parseLine("UKRAINA")
         self.sut.parseLine("    UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina")
 
         # then
-        self.assertEqual(parsing.Menu, type(self.sut._current_item))
+        # menu should have one child
+        # menu should be current
+        self.assertEqual(parsing.MenuRootButton, type(self.sut._current_item))
+
+
+    def test_menuWithHeaderAndItem_shouldParse(self):
+        # when
+        self.sut.parseLine("UKRAINA")
+        self.sut.parseLine("    UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina")
+        self.sut.parseLine("    Odessa, Delta Dunaju czyli z wioslem w swiat (2009)|http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html")
+
+        # then
+        # menu root button should be current
+        # mrb should have 2 childreen
+        self.assertEqual(parsing.MenuRootButton, type(self.sut._current_item))
+
+
+    def test_menuWithHeaderAndItemAndEnding_shouldParse(self):
+        # when
+        self.sut.parseLine("UKRAINA")
+        self.sut.parseLine("    UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina")
+        self.sut.parseLine("    Odessa, Delta Dunaju czyli z wioslem w swiat (2009)|http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html")
+        self.sut.parseLine("")
+
+        # then
+        # current should be none
+        # mrb should have 2 childreen
+        self.assertEqual( None, self.sut._current_item)
+
+
+    def test_menuWithHeaderAndTwoItemsAndEnding_shouldParse(self):
+        # when
+        self.sut.parseLine("UKRAINA")
+        self.sut.parseLine("    UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina")
+        self.sut.parseLine("    Odessa, Delta Dunaju czyli z wioslem w swiat (2009)|http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html")
+        self.sut.parseLine("    Odessa, Delta Dunaju czyli z wioslem w swiat (2009)|http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html")
+        self.sut.parseLine("")
+
+        # then
+        # current should be none
+        # mrb should have 2 childreen
+        self.assertEqual( None, self.sut._current_item)
+
+
+    def test_menuWithSubmenu_shouldParse(self):
+        # when
+        self.sut.parseLine("UKRAINA")
+        self.sut.parseLine("    UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina")
+        self.sut.parseLine("    Odessa, Delta Dunaju czyli z wioslem w swiat (2009)")
+
+        #then
+        self.assertEqual( parsing.SubmenuItem, type(self.sut._current_item))
+
+
+    def test_menuWithSubmenuAndItem_shouldParse(self):
+        # when
+        self.sut.parseLine("UKRAINA")
+        self.sut.parseLine("    UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina")
+        self.sut.parseLine("    Odessa, Delta Dunaju czyli z wioslem w swiat (2009)")
+        self.sut.parseLine("    UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina")
+
+        #then
+        self.assertEqual( parsing.SubmenuItem, type(self.sut._current_item))
+
+    def test_menuWithSubmenuAndEnding_shouldParse(self):
+        # when
+        self.sut.parseLine("UKRAINA")
+        self.sut.parseLine("    UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina")
+        self.sut.parseLine("    Odessa, Delta Dunaju czyli z wioslem w swiat (2009)")
+        self.sut.parseLine("        Odessa, Delta Dunaju czyli z wioslem w swiat (2009)|http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html")
+        self.sut.parseLine("        Odessa, Delta Dunaju czyli z wioslem w swiat2 (2009)|http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html")
+        self.sut.parseLine("        END_SUBMENU")
+        self.sut.parseLine("")
+
+        # then
+        # current should be none
+        # mrb should have 2 childreen
+        self.assertEqual( None, self.sut._current_item)
 
 
 class MenuItemsTestCase(unittest.TestCase):

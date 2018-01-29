@@ -1,3 +1,5 @@
+// the submenu is recognized by not having link
+// END_SUBMENU is used to mark end of menu. In future may want to refine to number of spaces
    # UKRAINA
         #   UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina
         #   Odessa, Delta Dunaju czyli z wioslem w swiat (2009)|http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html
@@ -7,14 +9,14 @@
         #   Majowy wypad na Polesie
         #     Majowy wypad na Polesie cz.1 (2011)|http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli.html
         #     Majowy wypad na Polesie cz.2 (2011)|http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli_1.html
-
-
+        #   END_SUBMENU
         #   Szackie Jeziora, poleskie wioski nad Prypecią (2015)
         #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.1|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora.html
         #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.2|http://jabolowaballada.blogspot.com/2015/07/ukraina.html
         #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.3|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora_8.html
         #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.4|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora_13.html
         #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.5|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora_21.html
+        #   END_SUBMENU
         #   Ukraina, pododeskie kurorty (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz53-ukraina.html
         #   Na środkowej Ukrainie (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz54-na-srodkowej.html
         #   Gdzies na Ukrainie (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz55-gdzies-na.html

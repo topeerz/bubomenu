@@ -36,41 +36,70 @@ class MenuRootButton(AbstractMenuItem):
             return self
 
         elif MenuParser.parseLink(line):
-            # menu item
-            child_menu = Menu(self)
+            if not len(self._rg_child):
+                # first item is header
+                child_menu = MenuHeaderItem(self)
+
+            else:
+                # otherwise menu item
+                child_menu = MenuItem(self)
+
             self._rg_child + [child_menu]
             return child_menu.parseLine(line)
 
-        elif not MenuParser.parseLink(line):
+        elif line and not MenuParser.parseLink(line):
             # submenu item
-            # my child
-            # add child
-            # pass line child
-            # return what child returned
-            raise RuntimeError("Not supported yet")
-
-        elif line:
-            return self
+            child_menu = SubmenuItem(self)
+            self._rg_child + [child_menu]
+            return child_menu.parseLine(line)
 
         else:
             # empty - we are done
             return self._parent
 
 
-class Menu(AbstractMenuItem):
+class MenuHeaderItem(AbstractMenuItem):
     def parseLine(self, line):
-        return self
+        return self._parent
 
 
 class MenuItem(AbstractMenuItem):
     def parseLine(self, line):
-        pass
+
+
+        if MenuParser.parseLink(line):
+            #parse me
+            return self._parent
+
+        elif line and not MenuParser.parseLink(line):
+            # submenu item
+            child_menu = SubmenuItem(self)
+            self._rg_child + [child_menu]
+            return child_menu.parseLine(line)
+
+        else:
+            #end
+            return self._parent
 
 
 class SubmenuItem(AbstractMenuItem):
     def parseLine(self, line):
-        pass
 
+        if MenuParser.parseLink(line):
+            # submenu menu item
+            child_menu = MenuItem(self)
+            self._rg_child + [child_menu]
+            return child_menu.parseLine(line)
+
+        elif "END_SUBMENU" in line:
+            return self._parent
+
+        elif line and not MenuParser.parseLink(line):
+            # parse me
+            return self
+
+        else:
+            raise RuntimeError("Can't parse this")
 
 class MenuParser(object):
     """
