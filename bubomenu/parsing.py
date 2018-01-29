@@ -14,11 +14,20 @@ class AbstractMenuItem(object):
         """
         raise NotImplementedError("Not implemented")
 
-    def html(self):
+    def parseMyself(self, line):
         raise NotImplementedError("Not implemented")
 
+    def html(self):
+        html = "%(content)s" % { "content" : self._content }
+        for child in self._rg_child:
+           html += child.html()
+
+        return html
 
 class MenuRootButton(AbstractMenuItem):
+    def parseMyself(self, line):
+        self._content = line
+
     def parseLine(self, line):
         """
         :param line: parse data
@@ -32,7 +41,7 @@ class MenuRootButton(AbstractMenuItem):
             if link or link == "":
                 raise RuntimeError("Can't parse this")
 
-            self._content = line
+            self.parseMyself(line)
             return self
 
         elif MenuParser.parseLink(line):
@@ -44,13 +53,13 @@ class MenuRootButton(AbstractMenuItem):
                 # otherwise menu item
                 child_menu = MenuItem(self)
 
-            self._rg_child + [child_menu]
+            self._rg_child.append(child_menu)
             return child_menu.parseLine(line)
 
         elif line and not MenuParser.parseLink(line):
             # submenu item
             child_menu = SubmenuItem(self)
-            self._rg_child + [child_menu]
+            self._rg_child.append(child_menu)
             return child_menu.parseLine(line)
 
         else:
@@ -59,47 +68,57 @@ class MenuRootButton(AbstractMenuItem):
 
 
 class MenuHeaderItem(AbstractMenuItem):
+    def parseMyself(self, line):
+        self._content = line
+
     def parseLine(self, line):
+        self.parseMyself(line)
         return self._parent
 
 
 class MenuItem(AbstractMenuItem):
+    def parseMyself(self, line):
+        self._content = line
+
     def parseLine(self, line):
 
-
         if MenuParser.parseLink(line):
-            #parse me
+            self._content = line
             return self._parent
 
         elif line and not MenuParser.parseLink(line):
             # submenu item
             child_menu = SubmenuItem(self)
-            self._rg_child + [child_menu]
+            self._rg_child.append(child_menu)
             return child_menu.parseLine(line)
 
         else:
-            #end
+            # end
             return self._parent
 
 
 class SubmenuItem(AbstractMenuItem):
+    def parseMyself(self, line):
+        self._content = line
+
     def parseLine(self, line):
 
         if MenuParser.parseLink(line):
             # submenu menu item
             child_menu = MenuItem(self)
-            self._rg_child + [child_menu]
+            self._rg_child.append(child_menu)
             return child_menu.parseLine(line)
 
         elif "END_SUBMENU" in line:
             return self._parent
 
         elif line and not MenuParser.parseLink(line):
-            # parse me
+            self.parseMyself(line)
             return self
 
         else:
             raise RuntimeError("Can't parse this")
+
 
 class MenuParser(object):
     """
@@ -128,41 +147,17 @@ class MenuParser(object):
         # slice line by line and feed parse line
 
     def parseLine(self, line):
+
         if self._current_item:
             self._current_item = self._current_item.parseLine(line)
 
         else:
             self._current_item = MenuRootButton(None)
+
+            if not self._root_item:
+                self._root_item = self._current_item;
+
             self._current_item = self._current_item.parseLine(line)
 
     def html(self):
         return self._root_item.html()
-        # if hasLink
-        # if in button
-        # if first in submenu
-        # add header
-        # else
-        # add item
-        # end
-        #
-
-        # else
-        # if not in button
-        # start button
-        # else
-        # if not in submenu - only one level of submenu supported rightnow
-        # start submenu
-        # else
-        # close submenu
-        # start submenu
-        # end
-        # end
-
-        # end
-
-        # if end
-        # close submenu (if open)
-        # close button
-        # end
-
-        # render to html

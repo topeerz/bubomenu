@@ -122,6 +122,16 @@ class MenuParserTestCase(unittest.TestCase):
         self.assertEqual( None, self.sut._current_item)
 
 
+    def test_html_shouldConcatenateHtmls(self):
+
+        # when
+        self.sut.parseLine("UKRAINA")
+        self.sut.parseLine("UKRAINA2|2")
+        self.sut.parseLine("")
+
+        #then
+        self.assertEqual("UKRAINAUKRAINA2|2", self.sut.html())
+
 class MenuItemsTestCase(unittest.TestCase):
     def setUp(self):
         pass
@@ -150,6 +160,7 @@ class MenuItemsTestCase(unittest.TestCase):
         # created menu
         # returned menu
         pass
+
 
 
 if __name__ == '__main__':
