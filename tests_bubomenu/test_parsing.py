@@ -1,4 +1,6 @@
 import unittest
+# from mock import patch, Mock, MagicMock
+
 from bubomenu import parsing
 
 
@@ -27,6 +29,21 @@ class MenuParserTestCase(unittest.TestCase):
         # then
         self.assertEqual("", ret)
 
+    def test_firstParseLine_shouldCreateRootButton(self):
+        # when
+        self.sut.parseLine("UKRAINA")
+
+        # then
+        self.assertEqual(parsing.MenuRootButton, type(self.sut._current_item))
+
+    def test_oneItemMenu_shouldParse(self):
+        # when
+        self.sut.parseLine("UKRAINA")
+        self.sut.parseLine("    UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina")
+
+        # then
+        self.assertEqual(parsing.Menu, type(self.sut._current_item))
+
 
 class MenuItemsTestCase(unittest.TestCase):
     def setUp(self):
@@ -40,8 +57,8 @@ class MenuItemsTestCase(unittest.TestCase):
         ret = sut.parseLine("A blablabla")
 
         # then
-        self.assertEqual(sut,ret)
-        self.assertEqual(0,len(sut._rg_child))
+        self.assertEqual(sut, ret)
+        self.assertEqual(0, len(sut._rg_child))
 
     def test_MenuRootButton_parseLine_ifFirstInputHasLink_ShouldThrow(self):
         # given
@@ -49,13 +66,14 @@ class MenuItemsTestCase(unittest.TestCase):
 
         # when
         # then
-        self.assertRaises(Exception, sut.parseLine, "A blablabla|" )
-        self.assertRaises(Exception, sut.parseLine, "A blablabla|some.link" )
+        self.assertRaises(Exception, sut.parseLine, "A blablabla|")
+        self.assertRaises(Exception, sut.parseLine, "A blablabla|some.link")
 
     def test_MenuRootButton_parseLine_ShouldCreateMenu(self):
         # created menu
         # returned menu
         pass
+
 
 if __name__ == '__main__':
     unittest.main()

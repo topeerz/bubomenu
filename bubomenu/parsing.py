@@ -2,9 +2,9 @@ import re
 
 
 class AbstractMenuItem(object):
-    def __init__(self,parent):
+    def __init__(self, parent):
         self._parent = parent
-        self._rg_child = ()
+        self._rg_child = []
         self._content = None
 
     def parseLine(self, line):
@@ -17,14 +17,19 @@ class AbstractMenuItem(object):
     def html(self):
         raise NotImplementedError("Not implemented")
 
+
 class MenuRootButton(AbstractMenuItem):
     def parseLine(self, line):
+        """
+        :param line: parse data
+        :return: return object to receive next input (child, parent or self)
+        """
 
         root_button_initialized = self._content
         if not root_button_initialized:
             # my
             link = MenuParser.parseLink(line)
-            if link or link =="":
+            if link or link == "":
                 raise RuntimeError("Can't parse this")
 
             self._content = line
@@ -33,7 +38,7 @@ class MenuRootButton(AbstractMenuItem):
         elif MenuParser.parseLink(line):
             # menu item
             child_menu = Menu(self)
-            self._rg_child.add(child_menu)
+            self._rg_child + [child_menu]
             return child_menu.parseLine(line)
 
         elif not MenuParser.parseLink(line):
@@ -44,6 +49,9 @@ class MenuRootButton(AbstractMenuItem):
             # return what child returned
             raise RuntimeError("Not supported yet")
 
+        elif line:
+            return self
+
         else:
             # empty - we are done
             return self._parent
@@ -51,7 +59,7 @@ class MenuRootButton(AbstractMenuItem):
 
 class Menu(AbstractMenuItem):
     def parseLine(self, line):
-        pass
+        return self
 
 
 class MenuItem(AbstractMenuItem):
@@ -65,6 +73,12 @@ class SubmenuItem(AbstractMenuItem):
 
 
 class MenuParser(object):
+    """
+    creating tree of menu objects
+    providing html version
+    providing helper methods
+    """
+
     def __init__(self):
         self._buffer = None  # buffer to parse
         self._root_item = None  # root element
@@ -80,8 +94,17 @@ class MenuParser(object):
 
         return link
 
-    def parse_line(self, line):
-        self._current_item = self._current_item.parseLine(line)
+    def parseBuffer(self, buffer):
+        self._buffer = buffer
+        # slice line by line and feed parse line
+
+    def parseLine(self, line):
+        if self._current_item:
+            self._current_item = self._current_item.parseLine(line)
+
+        else:
+            self._current_item = MenuRootButton(None)
+            self._current_item = self._current_item.parseLine(line)
 
     def html(self):
         return self._root_item.html()
