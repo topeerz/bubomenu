@@ -1,115 +1,23 @@
-// the submenu is recognized by not having link
-// END_SUBMENU is used to mark end of menu. In future may want to refine to number of spaces
-   # UKRAINA
-        #   UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina
-        #   Odessa, Delta Dunaju czyli z wioslem w swiat (2009)|http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html
-        #   weekend we Lwowie (2010)|http://jabolowaballada.blogspot.com/2015/04/ukraina-weekend-we-lwowie-2010.html
-        #   Kinburn, Arabatka (2010)|http://jabolowaballada.blogspot.com/2015/03/ukraina-kinburn-arabatka-2010.html
-        #   Zakarpackie wąskotorówki (2011)|http://jabolowaballada.blogspot.com/2015/03/ukraina-zakarpackie-waskotorowki-2011.html
-        #   Majowy wypad na Polesie
-        #     Majowy wypad na Polesie cz.1 (2011)|http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli.html
-        #     Majowy wypad na Polesie cz.2 (2011)|http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli_1.html
-        #   END_SUBMENU
-        #   Szackie Jeziora, poleskie wioski nad Prypecią (2015)
-        #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.1|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora.html
-        #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.2|http://jabolowaballada.blogspot.com/2015/07/ukraina.html
-        #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.3|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora_8.html
-        #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.4|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora_13.html
-        #     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.5|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora_21.html
-        #   END_SUBMENU
-        #   Ukraina, pododeskie kurorty (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz53-ukraina.html
-        #   Na środkowej Ukrainie (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz54-na-srodkowej.html
-        #   Gdzies na Ukrainie (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz55-gdzies-na.html
-        #   Ukraina, Lipniażka (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz56-ukraina-lipniazka.html
-        #   Ukraina, baza rakietowa (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz57-ukraina-baza.html
-        #   Ukraina, powrot (2016)|http://jabolowaballada.blogspot.com/2017/02/czas-nie-goni-nas-cz58-ukraina-powrot.html
-
-
-        # "bubomenu" : {
-        #     "label" : "UKRAINA",
-        #     "menu" : {
-        #         "headermenuitem : {
-        #             "label" : "UKRAINA"
-        #             "link" : "http://jabolowaballada.blogspot.com/search/label/ukraina"
-        #         },
-        #
-        #         "menuitem" : {
-        #             "label" : "Odessa, Delta Dunaju czyli z wiosłem w świat (2009)" ,
-        #             "link" : "http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html"
-        #         },
-        #
-        #         "submenu" : {
-        #             "label" : "Majowy wypad na Polesie",
-        #             "menu" : {
-        #                 "menuitem" : {
-        #                     "label" : "Majowy wypad na Polesie cz.1 (2011)" ,
-        #                     "link" : "asdasds"
-        #                 },
-        #
-        #                 "menuitem" : {
-        #                     "label" : "Majowy wypad na Polesie cz.2 (2011)" ,
-        #                     "link" : "asdasds"
-        #                 },
-        #             }
-        #         },
-        #     }
-        # }
-
-        # <div class='container'>
-        #     <p/>
-        #     <div class='dropdown'>
-        #         <button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'>UKRAINA<span class='caret'/></button>
-        #         <ul class='dropdown-menu'>
-        #             <li><a href='http://jabolowaballada.blogspot.com/search/label/ukraina' tabindex='-1'>UKRAINA</a></li>
-        #             <div class='divider'></div>
-        #             <li><a href='http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html' tabindex='-1'>Odessa, Delta Dunaju czyli z wiosłem w świat (2009)</a></li>
-        #
-        #             <li class='dropdown-submenu'>
-        #                 <a class='submenu-title' href='#' tabindex='-1'>Majowy wypad na Polesie<span class='caret'/></a>
-        #                 <ul class='dropdown-menu'>
-        #                     <li><a href='http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli.html'>Majowy wypad na Polesie cz.1 (2011)</a></li>
-        #                     <li><a href='http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli_1.html'>Majowy wypad na Polesie cz.2 (2011)</a></li>
-        #                 </ul>
-        #              </li>
-        #             <li class='dropdown-submenu'>
-        #                 <a class='submenu-title' href='#' tabindex='-1'>Majowy wypad na Polesie<span class='caret'/></a>
-        #                 <ul class='dropdown-menu'>
-        #             <li><a href='http://jabolowaballada.blogspot.com/search/label/ukraina' tabindex='-1'>UKRAINA</a></li>
-        #             <div class='divider'></div>
-        #             <li><a href='http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html' tabindex='-1'>Odessa, Delta Dunaju czyli z wiosłem w świat (2009)</a></li>
-        #
-        #             <li class='dropdown-submenu'>
-        #                 <a class='submenu-title' href='#' tabindex='-1'>Majowy wypad na Polesie<span class='caret'/></a>
-        #                 <ul class='dropdown-menu'>
-        #                     <li><a href='http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli.html'>Majowy wypad na Polesie cz.1 (2011)</a></li>
-        #                     <li><a href='http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli_1.html'>Majowy wypad na Polesie cz.2 (2011)</a></li>
-        #                 </ul>
-        #              </li>
-        #                 </ul>
-        #              </li>
-        #         </ul>
-        #     </div>
-        # </div>
-
-
-
-        # <div class='container'>
-        #     <p/>
-        #     <div class='dropdown'>
-        #         <button class='btn btn-default dropdown-toggle' data-toggle='dropdown' type='button'>Blabla<span class='caret'/></button>
-        #         <ul class='dropdown-menu'>
-        #             <li><a href='link to category' tabindex='-1'>Ukraina</a></li>
-        #             <div class='divider'></div>
-        #             <li><a href='link to item0' tabindex='-1'>Submenu item 0</a></li>
-        #             <li><a href='link to item1' tabindex='-1'>Submenu item 1</a></li>
-        #
-        #             <li class='dropdown-submenu'>
-        #                 <a class='submenu-title' href='#' tabindex='-1'>submenu title<span class='caret'/></a>
-        #                 <ul class='dropdown-menu'>
-        #                     <li><a href='link to submenu item0.0'>Submenu item 0.0</a></li>
-        #                     <li><a href='link to submenu item0.1'>Submenu item 0.1</a></li>
-        #                 </ul>
-        #              </li>
-        #         </ul>
-        #     </div>
-        # </div>
+UKRAINA
+   UKRAINA|http://jabolowaballada.blogspot.com/search/label/ukraina
+   Odessa, Delta Dunaju czyli z wioslem w swiat (2009)|http://jabolowaballada.blogspot.com/2015/03/ukraina-delta-dunaju-czyli-z-wiosem-w.html
+   weekend we Lwowie (2010)|http://jabolowaballada.blogspot.com/2015/04/ukraina-weekend-we-lwowie-2010.html
+   Kinburn, Arabatka (2010)|http://jabolowaballada.blogspot.com/2015/03/ukraina-kinburn-arabatka-2010.html
+   Zakarpackie wąskotorówki (2011)|http://jabolowaballada.blogspot.com/2015/03/ukraina-zakarpackie-waskotorowki-2011.html
+   Majowy wypad na Polesie
+     Majowy wypad na Polesie cz.1 (2011)|http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli.html
+     Majowy wypad na Polesie cz.2 (2011)|http://jabolowaballada.blogspot.com/2015/04/ukraina-bagna-piach-i-duzo-piwa-czyli_1.html
+   END_SUBMENU
+   Szackie Jeziora, poleskie wioski nad Prypecią (2015)
+     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.1|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora.html
+     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.2|http://jabolowaballada.blogspot.com/2015/07/ukraina.html
+     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.3|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora_8.html
+     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.4|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora_13.html
+     Szackie Jeziora, poleskie wioski nad Prypecią (2015) cz.5|http://jabolowaballada.blogspot.com/2015/07/ukraina-bekit-i-zielen-szackie-jeziora_21.html
+   END_SUBMENU
+   Ukraina, pododeskie kurorty (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz53-ukraina.html
+   Na środkowej Ukrainie (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz54-na-srodkowej.html
+   Gdzies na Ukrainie (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz55-gdzies-na.html
+   Ukraina, Lipniażka (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz56-ukraina-lipniazka.html
+   Ukraina, baza rakietowa (2016)|http://jabolowaballada.blogspot.com/2017/01/czas-nie-goni-nas-cz57-ukraina-baza.html
+   Ukraina, powrot (2016)|http://jabolowaballada.blogspot.com/2017/02/czas-nie-goni-nas-cz58-ukraina-powrot.html
